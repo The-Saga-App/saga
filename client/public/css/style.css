@@ -1,0 +1,18 @@
+:root {
+  --black: #1d1d1d;
+  --grey: #E5E5E5;
+  --blue: #0DFFF0; 
+  --blue-dark: #00B3D9;
+  --blue-darker: #0B5063;
+  --red: #FF0D90;
+  --red-dark: #A6006D;
+  --yellow: #FFD80D;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.bg-black {
+  background-color: var(--black);
+}

@@ -1,3 +1,4 @@
+import { GRID_PIXEL_SIZE } from "./constants"
 import { EventBus } from "./event_bus"
 import type { Group } from "./group"
 import type { Link } from "./link"
@@ -9,8 +10,8 @@ export class Diagram extends EventBus {
   readonly groups: Set<Group> = new Set()
 
   private ctx: CanvasRenderingContext2D
-  private width: number
-  private height: number
+  private width: number = 1600
+  private height: number = 900
 
   constructor (canvas: HTMLCanvasElement) {
     super()
@@ -18,8 +19,6 @@ export class Diagram extends EventBus {
     canvas.width
     if (!ctx) throw new Error('Diagram: Failed to instantiate 2d context');
     this.ctx = ctx
-    this.width = canvas.width
-    this.height = canvas.height
 
     requestAnimationFrame(this.update.bind(this))
     console.log(this)
@@ -33,6 +32,25 @@ export class Diagram extends EventBus {
   draw() {
     this.ctx.clearRect(0, 0, this.width, this.height)
 
+    this.drawGrid()
     this.nodes.forEach(node => node.draw(this.ctx))
+  }
+
+  drawGrid() {
+    this.ctx.strokeStyle = "rgba(245, 39, 145, 0.5)"
+
+    for (let x = GRID_PIXEL_SIZE; x < this.width; x += GRID_PIXEL_SIZE) {
+      this.ctx.beginPath()
+      this.ctx.moveTo(x, 0)
+      this.ctx.lineTo(x, this.height)
+      this.ctx.stroke()
+    }
+
+    for (let y = GRID_PIXEL_SIZE; y < this.height; y += GRID_PIXEL_SIZE) {
+      this.ctx.beginPath()
+      this.ctx.moveTo(0, y)
+      this.ctx.lineTo(this.width, y)
+      this.ctx.stroke()
+    }
   }
 }

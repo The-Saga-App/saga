@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="canvasEl" width="400" height="225" style="border: 1px solid red;"></canvas>
+  <canvas ref="canvasEl" width="800" height="450" style="border: 1px solid gray;"></canvas>
 </template>
 
 <script lang="ts">
@@ -16,7 +16,7 @@ export default {
       if (!canvasEl.value) return
       diagram = new Diagram(canvasEl.value)
 
-      diagram.nodes.add(new Node())
+      diagram.nodes.add(new Node(2, 2))
       // window.addEventListener('click', closeMenu);
     });
 

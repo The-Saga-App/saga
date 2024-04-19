@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, type RouteLocation } from 'vue-router'
 import { authGuard,  } from "@auth0/auth0-vue";
-import HomeView from '../views/HomeView.vue'
-import CallbackView from '../views/CallbackView.vue'
+import AppLayout from '@/layout/AppLayout.vue';
+import HomeView from '@/views/HomeView.vue'
+import CallbackView from '@/views/CallbackView.vue'
 import { auth0 } from '../auth0';
 import { supabase } from '../db.ts';
 
@@ -29,13 +30,20 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      beforeEnter: routeGuard
-    },
-    {
-      path: "/callback",
-      name: "callback",
-      component: CallbackView
+      component: AppLayout,
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: HomeView,
+          // beforeEnter: routeGuard
+        },
+        {
+          path: "/callback",
+          name: "callback",
+          component: CallbackView
+        }
+      ]
     },
   ]
 })

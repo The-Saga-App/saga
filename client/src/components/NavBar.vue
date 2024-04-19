@@ -1,10 +1,12 @@
 <template>
-  <nav class="bg-darkest w-100 flex h3 justify-between items-center mb0 w-100">
-      <div class="flex items-center justify-center h-100 ph3">
+  <nav class="bg-darkest w-100 flex h3 justify-between items-center mb0 w-100 ba">
+    <div class="card">
+        <Menubar :model="items" />
+    </div>
+      <!-- <div class="flex items-center justify-center h-100 ph3">
         <router-link
           to="/"
           class="link">
-          <!-- <Emoji class="icon f2">🏰</Emoji> -->
           <img src="/img/saga-logo-horizontal-dark-mode.svg" class="h2 pt2"/>
         </router-link>
       </div>
@@ -44,11 +46,45 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
   </nav>
 </template>
 
-<script lang="ts">
+
+
+<script>
+import Menubar from 'primevue/menubar';
+
+export default {
+    components: {
+        Menubar
+    },
+    data() {
+        return {
+            items: [
+                {
+                    label: 'Home',
+                    icon: 'pi pi-home'
+                },
+                {
+                    label: 'Features',
+                    icon: 'pi pi-star'
+                },
+                {
+                    label: 'Projects',
+                    icon: 'pi pi-search'
+                },
+                {
+                    label: 'Contact',
+                    icon: 'pi pi-envelope'
+                }
+            ]
+        };
+    }
+};
+</script>
+
+<!-- <script lang="ts">
   import { useAuth0 } from '@auth0/auth0-vue';
   import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -62,6 +98,54 @@
           isOpen.value = false;
         }
       };
+
+            
+      const items = ref([
+          {
+              label: 'Home',
+              icon: 'pi pi-home'
+          },
+          {
+              label: 'Features',
+              icon: 'pi pi-star'
+          },
+          {
+              label: 'Projects',
+              icon: 'pi pi-search',
+              items: [
+                  {
+                      label: 'Components',
+                      icon: 'pi pi-bolt'
+                  },
+                  {
+                      label: 'Blocks',
+                      icon: 'pi pi-server'
+                  },
+                  {
+                      label: 'UI Kit',
+                      icon: 'pi pi-pencil'
+                  },
+                  {
+                      label: 'Templates',
+                      icon: 'pi pi-palette',
+                      items: [
+                          {
+                              label: 'Apollo',
+                              icon: 'pi pi-palette'
+                          },
+                          {
+                              label: 'Ultima',
+                              icon: 'pi pi-palette'
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              label: 'Contact',
+              icon: 'pi pi-envelope'
+          }
+      ]);
 
       onMounted(() => {
         window.addEventListener('click', closeMenu);
@@ -83,4 +167,4 @@
       };
     }
   };
-</script>
+</script> -->
